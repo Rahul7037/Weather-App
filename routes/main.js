@@ -13,9 +13,6 @@ router.post('/', function (req, res) {
     // console.log(city);
     // console.log("hello",apiKey.module);
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey.module}`
-
-
-    // http://api.openweathermap.org/data/2.5/weather?q=Paris&units=imperial&appid=fbdb33e3a17cd9fb75e12c507133184d
     request(url, function (err, response, body) {
         if (err) {
             res.render('index', { weather: null, error: 'Error, please try again' });
@@ -36,19 +33,5 @@ router.post('/', function (req, res) {
         }
     });
 });
-function getSymbolForWeather(weatherCondition) {
-    switch (weatherCondition) {
-        case 'Clouds':
-            return '☁️';
-        case 'Rain':
-            return '🌧️';
-        case 'Snow':
-            return '❄️';
-        case 'Clear':
-            return '☀️';
-        default:
-            return '❓';
-    }
-}
 
 module.exports = router;
