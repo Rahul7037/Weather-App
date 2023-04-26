@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const apiKey = require('../private/key');
 
 router.get('/', function (req, res) {
     res.render('index', { weather: null, error: null });
@@ -11,8 +10,8 @@ router.post('/', function (req, res) {
 
     let city = req.body.city;
     // console.log(city);
-    // console.log("hello",apiKey.module);
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey.module}`
+    // console.log("hello",process.env.apiKey);
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.apiKey}`
     request(url, function (err, response, body) {
         if (err) {
             res.render('index', { weather: null, error: 'Error, please try again' });
